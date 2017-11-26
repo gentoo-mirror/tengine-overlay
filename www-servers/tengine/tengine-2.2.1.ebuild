@@ -40,7 +40,7 @@ mod_uri["fancyindex"]="https://github.com/${mod_a["fancyindex"]}/${mod_pn["fancy
 mod_wd["fancyindex"]="${WORKDIR}/${mod_p["fancyindex"]}"
 mod_doc["fancyindex"]="README.rst HACKING.md CHANGELOG.md"
 
-inherit eutils perl-module ssl-cert systemd toolchain-funcs user
+inherit eutils perl-module ssl-cert systemd user
 
 DESCRIPTION="Robust, small and high performance http and reverse proxy server"
 HOMEPAGE="http://tengine.taobao.org"
@@ -60,7 +60,7 @@ done
 RESTRICT="mirror"
 
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 
 mods[upstream]="upstream_keepalive upstream_rbtree"
 
@@ -454,7 +454,8 @@ src_install() {
 		if use tengine_external_modules_http_${m} ; then
 			docinto "${mod_p[$m]}"
 			for d in ${mod_doc[$m]} ; do
-				dodoc ${WORKDIR}/${mod_p[$m]}/${d} ; done
+				dodoc "${WORKDIR}/${mod_p[$m]}/${d}"
+			done
 		fi
 	done
 }
@@ -494,7 +495,7 @@ pkg_postinst() {
 	# If the tengine user can't change into or read the dir, display a warning.
 	# If su is not available we display the warning nevertheless since
 	# we can't check properly
-	su -s /bin/sh -c "cd ${EROOT}var/log/${PN} && ls" ${PN} >&/dev/null
+	su -s /bin/sh -c "cd ${EROOT}var/log/${PN} && ls" "${PN}" >&/dev/null
 	if [[ $? -ne 0 ]] ; then
 		ewarn "Please make sure that the (${PN}) user"
 		ewarn "or (${PN}) group has"
