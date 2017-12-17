@@ -1,5 +1,0 @@
-www-plugins/tengine-headers-more 0.25: Module that allows you to add, set, or clear any output or input header that you specify
-www-plugins/tengine-redis2 0.11: Upstream module for the Redis 2.0 protocol
-www-plugins/tengine-upload-progress 0.9.1: Is an implementation of an upload progress system, that monitors RFC1867 POST upload as they are transmitted to upstream servers
-www-servers/nginx 1.8.0 1.8.1: Robust, small and high performance http and reverse proxy server
-www-servers/tengine 2.2.1: Robust, small and high performance http and reverse proxy server
